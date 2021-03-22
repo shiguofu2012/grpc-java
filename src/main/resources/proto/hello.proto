@@ -1,0 +1,57 @@
+syntax = "proto3";
+package cn.shiguofu.cn.demo.go;
+
+// option go_package = "hello";
+option java_multiple_files = true;
+option java_package = "cn.shiguofu.cn.demo.go";
+// option java_outer_classname = "hello";
+
+
+// HelloRequest
+message HelloRequest {
+
+  // Message
+  string message = 1;
+
+}
+
+// HelloResponse
+message HelloResponse {
+
+  // Message
+  string message = 1;
+
+}
+
+// grpc stream request
+message StreamRequest {
+  string message = 1;
+}
+
+// grpc stream response
+message StreamResponse {
+  string message = 1;
+}
+
+
+// HelloService
+service HelloService {
+
+  // Hello
+  rpc Hello(HelloRequest) returns (HelloResponse) {};
+  // Hello stream
+  rpc HelloStream(stream StreamRequest) returns (stream StreamResponse) {
+  };
+
+  // grpc outer call
+  rpc HelloGrpc(GrpcRequest) returns (GrpcResponse) {
+  }
+}
+
+message GrpcRequest {
+  string message = 1;
+}
+
+message GrpcResponse {
+  string message = 1;
+}
